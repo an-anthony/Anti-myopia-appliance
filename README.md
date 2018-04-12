@@ -1,2 +1,8 @@
 # Anti-myopia-appliance
-Based on Arduino Hardware
+## 基于 Arduino 的防近视仪。
+--
+
+原理：
+  > 通过判断光敏电阻两端电压及红外线传感器输出电压，判断是否处于 “危险” 环境。
+  > 若是，则分别给予报警。
+
