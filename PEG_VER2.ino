@@ -43,59 +43,64 @@ iii,#.                     #iiiiiiiiiiii
 iii #                      #iiiiiiiiiiii
 iiiL#                      #iiiiiiiiiiii
 iii#E                      #iiiiiiiiiiii
-				ï¿½ï¿½ï¿½ï¿½É½ï¿½ï¿½ï¿½Ó£ï¿½
-				Bug Ô½ï¿½ï¿½Ô½ï¿½Ù£ï¿½
+				Áõ¿´É½±£ÓÓ£¡
+				Bug Ô½À´Ô½ÉÙ£¡
 */
 
-#define HARDWARE_INFRARED_DISTANCER A1 // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Pin ï¿½ï¿½
-#define HARDWARE_PHOTORESISTER A0 // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Pin ï¿½ï¿½
-#define LED_TIPS_DARK 4 // ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ê¾LED Pin ï¿½ï¿½
-#define LED_TIPS_DISTANCE 7 // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ê¾ LED Pin ï¿½ï¿½
-#define LED_TIPS_SAFE 2 // Ã»ï¿½ï¿½Ê²Ã´Ã«ï¿½ï¿½Ê±ï¿½ï¿½ LED Pin ï¿½ï¿½
+#define HARDWARE_INFRARED_DISTANCER A1 // ºìÍâ²â¾àÒÇ Pin ½Å
+#define HARDWARE_PHOTORESISTER A0 // ¹âÃôµç×è Pin ½Å
+#define LED_TIPS_DARK 4 // ¹âÏß¹ı°µÊ±£¬ÌáÊ¾LED Pin ½Å
+#define LED_TIPS_DISTANCE 7 // ¾àÀë¹ı½üÊ±£¬ÌáÊ¾ LED Pin ½Å
+#define LED_TIPS_SAFE 2 // Ã»ÓĞÊ²Ã´Ã«²¡Ê±µÄ LED Pin ½Å
 
-#define HARDWARE_PHOTORESISTER_LOWLIGHT 900 //ï¿½ï¿½Ñ¹ï¿½ï¿½ï¿½Ú¸ï¿½ÖµÊ±ï¿½Ğ¶ï¿½Îª ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½
-#define HARDWARE_BUSZZER_FREQUENCY 1000 // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½ï¿½
+#define HARDWARE_PHOTORESISTER_LOWLIGHT 900 //µçÑ¹¸ßÓÚ¸ÃÖµÊ±ÅĞ¶¨Îª ¡ºµÍÁÁ¶È¡»
+#define HARDWARE_BUSZZER_FREQUENCY 1000 // ·äÃùÆ÷ÆµÂÊ
 typedef enum {
-	TOO_DARK, // ï¿½ï¿½ï¿½ï¿½
-	TOO_CLOSE,  // ï¿½ï¿½ï¿½ï¿½
-	CLOSE_AND_DARK, // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	SHOW_SAFE,// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È«ï¿½ï¿½ï¿½ï¿½ÕµĞ¡ï¿½Ìµï¿½~[ï¿½Ú²ï¿½]
-	SHOW_DANGER,//Õªï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½[ï¿½Ú²ï¿½]
-	CLEAR_DARK, // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ§ï¿½ï¿½
-	CLEAR_CLOSE, // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ§ï¿½ï¿½
-	CLEAR_ALL // ï¿½ï¿½ï¿½Ä¿Ç°ï¿½ï¿½ï¿½ï¿½×´Ì¬
+	TOO_DARK, // ¹ı°µ
+	TOO_CLOSE,  // ¹ı½ü
+	CLOSE_AND_DARK, // ¹ı°µ¡¢¹ı½ü
+	SHOW_SAFE,// µãÁÁ°²È«µÄÄÇÕµĞ¡ÂÌµÆ~[ÄÚ²¿]
+	SHOW_DANGER,//ÕªÏÂÂÌÃ±×Ó[ÄÚ²¿]
+	CLEAR_DARK, // Çå³ı¹ı°µĞ§¹û
+	CLEAR_CLOSE, // Çå³ı¹ı½üĞ§¹û
+	CLEAR_ALL // Çå³ıÄ¿Ç°ËùÓĞ×´Ì¬
 } NOTIFYWARNING_LIST;
 
 
 //************************************
 // Method:   checkDark
-//					 ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è£©
+//					 ¼ì²éÊÇ·ñ¹âÏß¹ı°µ£¨¹âÃôµç×è£©
 // FullName:  boolean checkDark() 
-// Returns:   boolean (ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½Öµ > HARDWARE_PHOTORESISTER_LOWLIGHT)ï¿½ï¿½true)
+// Returns:   boolean (¹ı°µ(µç×èÖµ > HARDWARE_PHOTORESISTER_LOWLIGHT)£ºtrue)
 // Parameter: Null
 //************************************
 boolean checkDark() {
-
-  Serial.println(analogRead(HARDWARE_PHOTORESISTER));
+	Serial.print("[checkDark]¹âÃôµç×èÁ½¶ËµçÑ¹Öµ£º");
+	Serial.println(analogRead(HARDWARE_PHOTORESISTER));
 	return  analogRead(HARDWARE_PHOTORESISTER) > HARDWARE_PHOTORESISTER_LOWLIGHT;
 }
 
 
 //************************************
 // Method:   checkDistance
-//					 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(GP2Y0A21YK0F)ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Ğ¡ï¿½ï¿½Ö¸ï¿½ï¿½Öµ
+//					 ¼ì²é²â¾àÒÇÆ÷(GP2Y0A21YK0F)¾àÀëÊÇ·ñĞ¡ÓÚÖ¸¶¨Öµ
 // FullName:  boolean checkDistance(int minDistance)
-// Returns:   boolean (Ğ¡ï¿½ï¿½: true)
+// Returns:   boolean (Ğ¡ÓÚ: true)
 // Parameter: 
-//						unsigned int minDistance			ï¿½Ã»ï¿½Ö¸ï¿½ï¿½ï¿½Ä¾ï¿½ï¿½ï¿½
+//						unsigned int minDistance			ÓÃ»§Ö¸¶¨µÄ¾àÀë
 //************************************
 boolean checkDistance(unsigned int minDistance) {
 	double dVolt = (double) analogRead(HARDWARE_INFRARED_DISTANCER) * 5.00 / 1023.00;
 	double dDistance,dDistanceRabbit;
-	// ï¿½Ëºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½â¡£
-	// ï¿½ï¿½ y Öµï¿½ïµ½ 3.3x (V) ï¿½ï¿½Ê±ï¿½ï¿½delta = nan ï¿½ï¿½ï¿½ï¿½ï¿½Ç²ï¿½ï¿½Üµï¿½ï¿½ï¿½Äµï¿½
-	// ï¿½ï¿½ï¿½ï¿½Ò²ï¿½ï¿½Öªï¿½ï¿½ÎªÊ²Ã´ï¿½ï¿½ï¿½Üµï¿½ï¿½ï£¬ï¿½ï¿½ï¿½Çºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£ï¿½
-	// ï¿½ï¿½Ë¶ï¿½ï¿½ï¿½ 3.3x (V) Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ğ£ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½Ö±ï¿½Ó´ï¿½ï¿½8cm
+	
+	
+	Serial.print("[checkDistance]´ËÊ±µçÑ¹£º");
+	Serial.println(dVolt);
+	
+	// ´Ëº¯Êı´æÔÚ¶¨ÒåÓòÎÊÌâ¡£
+	// µ± y Öµ´ïµ½ 3.3x (V) µÄÊ±ºò£¬delta = nan ÕıºÃÊÇ²»ÄÜµ½´ïµÄµã
+	// £¨ÎÒÒ²²»ÖªµÀÎªÊ²Ã´²»ÄÜµ½´ï£¬µ«ÊÇº¯Êı½âÎöÊ½ÊÇÕâÑùµÄ£©
+	// Òò´Ë¶ÔÓÚ 3.3x (V) Ê±ĞèÌØÅĞ£¨´ËÊ±¾àÀëÖµ¿ÉÒÔÖ±½Ó´ò±í£º8cm
 	if (abs(dVolt - 3.38) <= 0.1) {
 		return 8 < minDistance;
 	}
@@ -105,12 +110,15 @@ boolean checkDistance(unsigned int minDistance) {
 	
 	dDistance = (-delta + 46) / denominator;// https://wenku.baidu.com/view/cfbd075f312b3169a451a46e.html
 	dDistanceRabbit = ( delta + 46 ) / denominator;
+	
+	Serial.print("[checkDistance]¾àÀëÖµ(dDistance,dDistanceRabbit)£º");
+	Serial.print(dDistance);
+	Serial.print(",");
+	Serial.println(dDistanceRabbit);
 
-Serial.println(dVolt);
-Serial.println(dDistanceRabbit);
-	// ï¿½ï¿½Îªï¿½Ëºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½Îºï¿½ï¿½ï¿½ï¿½ï¿½
-	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
-	// ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±Ó¦ï¿½Ã¿ï¿½ï¿½ï¿½ > 5 ï¿½ï¿½ x Öµ
+	// ÒòÎª´Ëº¯Êı½üËÆÓÚ¶ş´Îº¯Êı£¬
+	// »á´æÔÚÁ½¸öÖµ
+	// ¸ù¾İÊµ¼ÊÇé¿ö£¬´ËÊ±Ó¦¸Ã¿¼ÂÇ > 5 µÄ x Öµ
 	if (dDistance >  5) { 
 		return dDistance < minDistance;
 	} else { 
@@ -121,11 +129,11 @@ Serial.println(dDistanceRabbit);
 
 //************************************
 // Method:   notifyWarning
-//					ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ßµï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//					¾¯¸æÊ¹ÓÃÕßµ±Ç°»·¾³³öÏÖÎÊÌâ
 // FullName:  void notifyWarning(int warningType) 
 // Returns:   Null
 // Parameter: 
-//						int warningType			ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (NOTIFYWARNING_LIST)
+//						int warningType			¾¯¸æÀàĞÍ (NOTIFYWARNING_LIST)
 //************************************
 void notifyWarning(int warningType) {
 	NOTIFYWARNING_LIST nType = (NOTIFYWARNING_LIST) warningType;
@@ -143,23 +151,22 @@ void notifyWarning(int warningType) {
 	case CLOSE_AND_DARK:
 		notifyWarning(TOO_CLOSE);
 		notifyWarning(TOO_DARK);
-		//ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½Ğ¡ï¿½ï¿½Ã±Õªï¿½Â£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í²ï¿½ï¿½Ã¼Ó´ï¿½ï¿½ï¿½ï¿½ï¿½
+		//ÒòÎªÉÏÃæÁ½¸öÒÑ¾­°ÑĞ¡ÂÌÃ±ÕªÏÂ£¬ËùÒÔÕâ¶ù¾Í²»ÓÃ¼Ó´úÂëÁË
 		break;
 	case CLEAR_DARK:
 		digitalWrite(LED_TIPS_DARK, LOW);
-    noTone(LED_TIPS_DARK);
+		noTone(LED_TIPS_DARK);
 		break;
 	case CLEAR_CLOSE:
 		digitalWrite(LED_TIPS_DISTANCE, LOW);
-    noTone(LED_TIPS_DISTANCE);
+		noTone(LED_TIPS_DISTANCE);
 		break;
 	case CLEAR_ALL:
 		notifyWarning(CLEAR_DARK);
 		notifyWarning(CLEAR_CLOSE);
-		notifyWarning(SHOW_SAFE);
+		notifyWarning(SHOW_SAFE); //Õâ¸öµØ·½Ò»¶¨ÒªµãÆğÂÌÃ±£¬ÒòÎªÊÇÇå³ıÈ«²¿Ğ§¹û
 		noTone(LED_TIPS_DISTANCE);
 		noTone(LED_TIPS_DARK);
-		//ï¿½ï¿½ï¿½ï¿½Ø·ï¿½Ò»ï¿½ï¿½Òªï¿½Ó£ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½È«ï¿½ï¿½Ğ§ï¿½ï¿½
 		break;
 	case SHOW_DANGER:
 		digitalWrite(LED_TIPS_SAFE, LOW);
@@ -175,31 +182,31 @@ void notifyWarning(int warningType) {
 
 
 void setup() {
-  Serial.begin(9600);
+	Serial.begin(9600);
 	pinMode(LED_TIPS_DARK, OUTPUT);
 	pinMode(LED_TIPS_DARK, OUTPUT);
 	pinMode(LED_TIPS_SAFE, OUTPUT);
 	digitalWrite(LED_TIPS_SAFE, HIGH);
 }
 
-boolean bFlagForWarning[2] = { false,false };// Waring Î¬ï¿½ï¿½ï¿½Ğ±ï¿½ï¿½ï¿½Ò»ï¿½Â±ï¿½Îª TOO_DARK  ï¿½Ú¶ï¿½ï¿½Â±ï¿½ TOO_CLOSE
+boolean bFlagForWarning[2] = { false,false };// Waring Î¬»¤ÁĞ±í£¬µÚÒ»ÏÂ±êÎª TOO_DARK  µÚ¶şÏÂ±ê TOO_CLOSE
 
 //************************************
 // Method:   setbFlagEffection
-//					ï¿½ï¿½ï¿½ï¿½È«ï¿½Ö±ï¿½ï¿½ï¿½ bFlagForWarning[2] Êµï¿½ï¿½Ó°ï¿½ï¿½Ğ§ï¿½ï¿½
+//					ÉèÖÃÈ«¾Ö±äÁ¿ bFlagForWarning[2] Êµ¼ÊÓ°ÏìĞ§¹û
 // FullName:  void setbFlagEffection()
-// Returns:  boolean (true: ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ false:SAFEï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// Returns:  boolean (true: ´æÔÚÒ»¸ö¾¯¸æ×°ÖÃ±»Æô¶¯ false:SAFEµÆÁÁÆğ
 // Parameter: Null
 //************************************
 boolean setbFlagEffection() {
 	if (bFlagForWarning[0] || bFlagForWarning[1]) { 
-		if (bFlagForWarning[0]) {//ï¿½ï¿½ï¿½ï¿½
+		if (bFlagForWarning[0]) {//¹ı°µ
 			notifyWarning(NOTIFYWARNING_LIST::TOO_DARK);
 		}else {
 			notifyWarning(NOTIFYWARNING_LIST::CLEAR_DARK);
 		}
 
-		if (bFlagForWarning[1]) {//ï¿½ï¿½ï¿½ï¿½
+		if (bFlagForWarning[1]) {//¹ı½ü
 			notifyWarning(NOTIFYWARNING_LIST::TOO_CLOSE);
 		}
 		else {
@@ -214,8 +221,8 @@ boolean setbFlagEffection() {
 }
 void loop() {
 	int iCheckCounter;
-	/* ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 3 ï¿½Î£ï¿½Ö»Òªï¿½ï¿½Ò»ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ¶ï¿½Îª fake
-	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ¶ï¿½*/
+	/* ·Ö±ğÁ¬Ğø¼ì²é 3 ´Î£¬Ö»ÒªÓĞÒ»´ÎÎª²»³ÉÁ¢ÔòÅĞ¶ÏÎª fake
+	 * ½µµÍÃô¸Ğ¶È*/
 	for (iCheckCounter = 0; iCheckCounter < 3; ++iCheckCounter) {
 		bFlagForWarning[0] = checkDark();
 		if(!bFlagForWarning[0]){
@@ -224,7 +231,7 @@ void loop() {
 		delay(500);
 	}
 	for (iCheckCounter = 0; iCheckCounter < 3; ++iCheckCounter) {
-		bFlagForWarning[1] = checkDistance(21);
+		bFlagForWarning[1] = checkDistance(10);
 		if (!bFlagForWarning[1]) {
 			break;
 		}
